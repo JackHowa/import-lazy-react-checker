@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import * as React from 'react';
+// via https://epicreact.dev/importing-react-through-the-ages/
 
 function App() {
+  const [targetFileName, setTargetFileName] = React.useState('')
+
+  // check if something is importable 
+  // import a function that says it's importable 
+  // make sure that function or element 
+  // https://stackoverflow.com/questions/53326353/dynamically-import-a-react-component-if-that-file-exists-otherwise-show-a-defau/53326847
+  const FileExistsChecker = React.lazy(() => import(`./${targetFileName}.js`).catch(() => ({ default: () => <div>Not Found</div> })))
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <form>
+        <label>
+          Target file name:
+          <input type="text" value={targetFileName} onChange={(e) => setTargetFileName(e.target.value)} name="file-name" />
+        </label>
+      </form>
+      <p>Test if file {targetFileName} exists</p>
+      <React.Suspense fallback={<p>Checking that file for ya...</p>}>
+        {
+          <FileExistsChecker />
+        }
+      </React.Suspense>
+    </div >
   );
 }
 
