@@ -15,6 +15,7 @@ function App() {
       <p>Type to see if the file exists in the in the app</p>
       <p>Try NewYa, Ya, or Kramer. Watch the network tab for the chunks imported dynamically.</p>
       <p>You will see not found if the file you're typing exists in the `src` folder.</p>
+      <p>But ... if the file does exist, it will render.</p>
       <form>
         <label>
           Target file name:
@@ -22,7 +23,7 @@ function App() {
         </label>
       </form>
       {/* just basic label, mostly to show that it's looking for a js file */}
-      {targetFileName && <p>Test if file {targetFileName}.js exists</p>}
+      {targetFileName && <p>Testing if file {targetFileName}.js exists</p>}
 
       {/* show loading state while the file is looking up after changing the input */}
       <React.Suspense fallback={<p>Checking that file for ya...</p>}>
