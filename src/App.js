@@ -12,13 +12,14 @@ function App() {
 
   return (
     <div className="App">
+      <p>Try NewYa, Ya, or Kramer. Watch the network tab for the chunks.</p>
       <form>
         <label>
           Target file name:
           <input type="text" value={targetFileName} onChange={(e) => setTargetFileName(e.target.value)} name="file-name" />
         </label>
       </form>
-      <p>Test if file {targetFileName} exists</p>
+      {targetFileName && <p>Test if file {targetFileName} exists</p>}
       <React.Suspense fallback={<p>Checking that file for ya...</p>}>
         {
           <FileExistsChecker />
