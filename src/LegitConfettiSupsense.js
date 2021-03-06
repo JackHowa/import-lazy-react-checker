@@ -4,7 +4,7 @@ function LegitConfettiSuspense() {
   // still gets warning 
   //   ./src/LazyCodeSplitter.js
   // Critical dependency: the request of a dependency is an expression
-  const LazyImportComponent = React.lazy(() => import('react-confetti'))
+  const LazyImportComponent = React.lazy(() => import('react-confetti').catch(() => ({ default: () => <p>Not Found</p> })))
 
   return (
     <React.Suspense fallback="Loading package">
