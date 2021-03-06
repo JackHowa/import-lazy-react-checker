@@ -32,8 +32,8 @@ function App() {
       <button onClick={changeConfettiStatus}>Toggle confetti</button>
       <button onClick={changeTargetPackage}>Toggle package that isn't installed</button>
 
-      <NonInstalledPackage show={loadPackageLoader === 'show'} />
-      <LegitConfettiSuspense show={showConfetti === "show"} />
+      <NonInstalledPackage show={loadPackageLoader === 'show'} expectFailure={true} />
+      <LegitConfettiSuspense show={showConfetti === "show"} expectFailure={false} />
     </div >
   );
 }
